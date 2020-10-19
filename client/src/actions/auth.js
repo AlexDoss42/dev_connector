@@ -19,7 +19,7 @@ export const loadUser = () => async (dispatch) => {
   }
 
   try {
-    const res = await axios.get('/api/auth');
+    const res = await axios.get('api/auth');
     dispatch({
       type: USER_LOADED,
       payload: res.data
@@ -52,6 +52,7 @@ export const register = ({ name, email, password }) => async (dispatch) => {
     const errors = err.response.data.errors;
 
     if (errors) {
+      console.log('failed in /auth.js/register');
       errors.array.forEach((error) => {
         setAlert(error.msg, 'danger');
       });
@@ -85,6 +86,7 @@ export const login = (email, password) => async (dispatch) => {
     const errors = err.response.data.errors;
 
     if (errors) {
+      console.log('failed in /auth.js/login');
       errors.array.forEach((error) => {
         setAlert(error.msg, 'danger');
       });

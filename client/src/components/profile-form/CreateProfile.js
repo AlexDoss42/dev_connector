@@ -1,7 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { useState } from 'react';
 
 const CreateProfile = (props) => {
   const [formData, setFormData] = useState({
@@ -18,6 +17,7 @@ const CreateProfile = (props) => {
     instagram: '',
     linkedin: ''
   });
+  const [displaySocialInputs, setDisplaySocialInputs] = useState(false);
 
   const {
     company,
@@ -100,36 +100,45 @@ const CreateProfile = (props) => {
         </div>
 
         <div className='my-2'>
-          <button type='button' className='btn btn-light'>
+          <button
+            onClick={() => setDisplaySocialInputs(!displaySocialInputs)}
+            type='button'
+            className='btn btn-light'
+          >
             Add Social Network Links
           </button>
           <span>Optional</span>
         </div>
 
-        <div className='form-group social-input'>
-          <i className='fab fa-twitter fa-2x'></i>
-          <input type='text' placeholder='Twitter URL' name='twitter' />
-        </div>
+        {displaySocialInputs && (
+          <Fragment>
+            <div className='form-group social-input'>
+              <i className='fab fa-twitter fa-2x'></i>
+              <input type='text' placeholder='Twitter URL' name='twitter' />
+            </div>
 
-        <div className='form-group social-input'>
-          <i className='fab fa-facebook fa-2x'></i>
-          <input type='text' placeholder='Facebook URL' name='facebook' />
-        </div>
+            <div className='form-group social-input'>
+              <i className='fab fa-facebook fa-2x'></i>
+              <input type='text' placeholder='Facebook URL' name='facebook' />
+            </div>
 
-        <div className='form-group social-input'>
-          <i className='fab fa-youtube fa-2x'></i>
-          <input type='text' placeholder='YouTube URL' name='youtube' />
-        </div>
+            <div className='form-group social-input'>
+              <i className='fab fa-youtube fa-2x'></i>
+              <input type='text' placeholder='YouTube URL' name='youtube' />
+            </div>
 
-        <div className='form-group social-input'>
-          <i className='fab fa-linkedin fa-2x'></i>
-          <input type='text' placeholder='Linkedin URL' name='linkedin' />
-        </div>
+            <div className='form-group social-input'>
+              <i className='fab fa-linkedin fa-2x'></i>
+              <input type='text' placeholder='Linkedin URL' name='linkedin' />
+            </div>
 
-        <div className='form-group social-input'>
-          <i className='fab fa-instagram fa-2x'></i>
-          <input type='text' placeholder='Instagram URL' name='instagram' />
-        </div>
+            <div className='form-group social-input'>
+              <i className='fab fa-instagram fa-2x'></i>
+              <input type='text' placeholder='Instagram URL' name='instagram' />
+            </div>
+          </Fragment>
+        )}
+
         <input type='submit' className='btn btn-primary my-1' />
         <a className='btn btn-light my-1' href='dashboard.html'>
           Go Back

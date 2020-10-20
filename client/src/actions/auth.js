@@ -8,7 +8,8 @@ import {
   AUTH_ERROR,
   LOGIN_FAIL,
   LOGIN_SUCCESS,
-  LOGOUT
+  LOGOUT,
+  CLEAR_PROFILE
 } from './types';
 
 //Load user
@@ -86,7 +87,6 @@ export const login = (email, password) => async (dispatch) => {
     const errors = err.response.data.errors;
 
     if (errors) {
-      console.log('failed in /auth.js/login');
       errors.array.forEach((error) => {
         setAlert(error.msg, 'danger');
       });
@@ -99,6 +99,9 @@ export const login = (email, password) => async (dispatch) => {
 
 //Dispatch logout
 export const logout = () => (dispatch) => {
+  dispatch({
+    type: CLEAR_PROFILE
+  });
   dispatch({
     type: LOGOUT
   });

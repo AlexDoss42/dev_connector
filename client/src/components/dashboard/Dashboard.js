@@ -11,7 +11,6 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile }) => {
   }, []);
 
   const { loading } = profile;
-  console.log(user.name);
 
   return loading && profile === null ? (
     <Spinner />

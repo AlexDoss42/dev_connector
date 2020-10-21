@@ -75,7 +75,7 @@ export const login = (email, password) => async (dispatch) => {
   const body = JSON.stringify({ email, password });
 
   try {
-    const res = await axios.post('api/auth', body, config);
+    const res = await axios.post('/api/auth', body, config);
 
     dispatch({
       type: LOGIN_SUCCESS,
@@ -87,8 +87,8 @@ export const login = (email, password) => async (dispatch) => {
     const errors = err.response.data.errors;
 
     if (errors) {
-      errors.array.forEach((error) => {
-        setAlert(error.msg, 'danger');
+      errors.forEach((error) => {
+        dispatch(setAlert(error.msg, 'danger'));
       });
     }
     dispatch({

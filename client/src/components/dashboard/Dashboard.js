@@ -17,7 +17,7 @@ const Dashboard = ({
 }) => {
   useEffect(() => {
     getCurrentProfile();
-  }, []);
+  }, [getCurrentProfile]);
 
   const { loading } = profile;
 
